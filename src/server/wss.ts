@@ -11,6 +11,7 @@ const server = Bun.serve<{ authToken: string; chat?: ChatSession }>({
     const authToken = cookies["X-Token"];
 
     if (!authToken) {
+      console.error("conneccion rechadad por no esta autenticado");
       return new Response("Need a token", { status: 401 });
     }
 
@@ -45,6 +46,7 @@ const server = Bun.serve<{ authToken: string; chat?: ChatSession }>({
         data: { authToken, chat },
       });
     } else {
+      console.error("404");
       return new Response("Not found", { status: 404 });
     }
   },
