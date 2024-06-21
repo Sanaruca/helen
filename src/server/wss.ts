@@ -5,6 +5,7 @@ import { gemini } from "./gemini";
 
 const server = Bun.serve<{ authToken: string; chat?: ChatSession }>({
   async fetch(req, server) {
+    console.log("request :>> ", req.url);
     const cookies = parseCookies(req.headers.get("Cookie") ?? "");
 
     const authToken = cookies["X-Token"];
