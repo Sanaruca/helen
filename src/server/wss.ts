@@ -75,15 +75,17 @@ const server = Bun.serve<{ authToken: string; chat?: ChatSession }>({
       }
     },
 
-    close(ws, code, reason) {},
+    close() {
+      console.log("coneccion cerrada");
+    },
   },
 });
 
 console.log(`Listening on localhost:${server.port}`);
 
-function getUserFromToken(token: string): { id: string } {
-  return { id: "asdf" };
-}
+// function getUserFromToken(token: string): { id: string } {
+//   return { id: "asdf" };
+// }
 
 function parseCookies(value: string) {
   const cookies: Record<string, string> = {};
