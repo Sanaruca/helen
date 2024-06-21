@@ -1,0 +1,46 @@
+.chat {
+  @apply flex flex-col gap-6 bg-slate-100 p-3 flex-1 overflow-auto;
+
+  &__message {
+    @apply rounded-2xl  p-3 shadow-xl shadow-gray-700/5;
+
+    &[data-rol="server"] {
+      @apply text-gray-800 rounded-bl-sm bg-slate-50;
+    }
+    &[data-rol="user"] {
+      @apply bg-blue-600 rounded-br-sm text-white ml-auto;
+    }
+
+    &[data-state="typing"] {
+      @apply flex gap-1 w-max;
+    }
+
+    &[data-state="typing"] > &__dot {
+      @apply inline-block h-2 w-2 bg-slate-500 rounded-full;
+      &:nth-child(1) {
+        animation: updown 500ms cubic-bezier(0.37, 0, 0.63, 1) 0ms infinite
+          alternate forwards;
+      }
+      &:nth-child(2) {
+        animation: updown 500ms cubic-bezier(0.37, 0, 0.63, 1) 250ms infinite
+          alternate forwards;
+      }
+      &:nth-child(3) {
+        animation: updown 500ms cubic-bezier(0.37, 0, 0.63, 1) 500ms infinite
+          alternate forwards;
+      }
+    }
+  }
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-1px);
+    opacity: 0.3;
+  }
+}
