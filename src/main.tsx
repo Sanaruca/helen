@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./Root";
 import { Chat } from "./ui/Chat";
-import Login from './ui/Login';
+import Login from "./ui/Login";
 
 const router = createBrowserRouter([
   {
