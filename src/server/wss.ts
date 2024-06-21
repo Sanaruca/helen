@@ -6,14 +6,14 @@ import { gemini } from "./gemini";
 const server = Bun.serve<{ authToken: string; chat?: ChatSession }>({
   async fetch(req, server) {
     console.log("request :>> ", req.url);
-    const cookies = parseCookies(req.headers.get("Cookie") ?? "");
+    // const cookies = parseCookies(req.headers.get("Cookie") ?? "");
 
-    const authToken = cookies["X-Token"];
+    // const authToken = cookies["X-Token"];
 
-    if (!authToken) {
-      console.error("conneccion rechadad por no esta autenticado");
-      return new Response("Need a token", { status: 401 });
-    }
+    // if (!authToken) {
+    //   console.error("conneccion rechadad por no esta autenticado");
+    //   return new Response("Need a token", { status: 401 });
+    // }
 
     const url = new URL(req.url);
 
@@ -43,7 +43,7 @@ const server = Bun.serve<{ authToken: string; chat?: ChatSession }>({
       });
 
       server.upgrade(req, {
-        data: { authToken, chat },
+        data: { authToken: "1234", chat },
       });
     } else {
       console.error("404");
@@ -90,22 +90,22 @@ console.log(`Listening on localhost:${server.port}`);
 //   return { id: "asdf" };
 // }
 
-function parseCookies(value: string) {
-  const cookies: Record<string, string> = {};
+// function parseCookies(value: string) {
+//   const cookies: Record<string, string> = {};
 
-  if (!value) return cookies;
+//   if (!value) return cookies;
 
-  value.split(`;`).forEach(function (cookie) {
-    let [name, ...rest] = cookie.split(`=`);
-    name = name?.trim();
-    if (!name) return;
-    const value = rest.join(`=`).trim();
-    if (!value) return;
-    cookies[name] = decodeURIComponent(value);
-  });
+//   value.split(`;`).forEach(function (cookie) {
+//     let [name, ...rest] = cookie.split(`=`);
+//     name = name?.trim();
+//     if (!name) return;
+//     const value = rest.join(`=`).trim();
+//     if (!value) return;
+//     cookies[name] = decodeURIComponent(value);
+//   });
 
-  return cookies;
-}
+//   return cookies;
+// }
 
 function parseWSSMessage<Data = object>(
   message: string
