@@ -34,7 +34,7 @@ export function Chat() {
 
     document.cookie = "X-Token=1234";
 
-    const ws = new WebSocket("http://localhost:3000/helen");
+    const ws = new WebSocket("https://helen-75t1.onrender.com/helen");
 
     ws.onopen = function () {
       console.log("conneccion exitosa");
